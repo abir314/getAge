@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+  
+    <script>
+        let divTag = elementName('app');
+        let html = '';
+        let personData = {name: '', age: null};
+
+        view();
+        function view(){
+            html = /*html*/`Input Name: <input placeholder="name" value = "${personData.name}" type="text"  onchange=" addName(this)"/><br/>
+                            Input date of birth: <input placeholder="age" type="date" onchange=" addDate(this)"/>
+                            ${(personData.name == '' ) ? '' : 
+                            `<p>Your name is ${personData.name} and age is ${personData.age} </p>`}
+                            `;
+
+            divTag.innerHTML = html;
+
+        }
+        function addName(element){
+            personData.name = element.value;
+            //view();
+
+        }
+        function addDate(element){
+            let birthYear= new Date(element.value).getFullYear();
+            let currentYear = new Date().getFullYear();
+            personData.age= currentYear-birthYear;
+            view();
+        }
+
+        function elementName(idName){
+            return document.getElementById(idName);
+        }
+    </script>
+</body>
+</html>
